@@ -1,0 +1,16 @@
+<html>
+	<body>
+        <h1>hello world!!!</h1>
+
+		<form action="" name="search">
+			<input type="text" name="query"/>
+			<input type="submit" value="Search" />
+		</form>
+
+        {% for movie in search_result %}
+            <p> {{ movie.fields.Name }} </p>
+            <img src = "{{ movie.fields.Pictures.0.url }}" alt=""} />
+        {% endfor %}
+
+	</body>
+</html>

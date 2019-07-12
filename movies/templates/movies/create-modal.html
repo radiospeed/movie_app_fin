@@ -1,0 +1,46 @@
+<div class="modal fade" id="modal-create">
+	<div class="modal-dialog" >
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalLabel">Create</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+			</div>
+            <div class="modal-body">
+                <!-- form action is where you wnant to be taken after submit
+					the syntax below is same as saying:
+					<form action="create\" method="post">
+					but we write it the way below, referring to a name and not a url, in case we change the 'create\' 						path later in url.py
+				-->
+            	<form action="{% url 'create' %}" method="post">
+
+                  	<!--takes care of security. only need it for method post-->
+
+                    {% csrf_token %}
+            		<div class="form-group">
+            			<label for="movieName">Name</label>
+                        <input type="text" class="form-control" id="movieName" placeholder="Enter name" name="name" required/>
+            		</div>
+
+                    <div class="form-group">
+            			<label for="moviePicture">Picture</label>
+                        <input type="text" class="form-control" id="moviePicture" placeholder="image URL" name="url"/>
+            		</div>
+
+                    <div class="form-group">
+            			<label for="movieRating">Rating</label>
+                        <input type="number" class="form-control" id="movieRating" placeholder="1-10" name="rating" min="1" max="10" required/>
+            		</div>
+
+                    <div class="form-group">
+            			<label for="movieNotes">Notes</label>
+                        <textarea name="notes" class="form-control" id="movieNotes"></textarea>
+            		</div>
+
+                    <button type="submit" class="btn btn-primary" >Create new movie</button>
+            	</form>
+            </div>
+
+
+		</div>
+	</div>
+</div>

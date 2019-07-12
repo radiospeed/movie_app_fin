@@ -1,0 +1,49 @@
+<div class="modal fade" id="edit-modal-{{movie.id}}">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="editModal">{{movie.fields.Name}}</h5>
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+			</div>
+            <div class="modal-body">
+            	<form action="{% url 'edit' movie_id=movie.id %}" method="post">
+					<!-- movie_id refers to the edit path in urls.py
+						edit/<str:movie_id>
+						'edit' is the name of the path we assigned in urls.py
+						path('edit/<str:movie_id>', views.edit, name='edit')
+						it triggers the views.edit function
+						we have access to the movie.id field in the loop we're running in MOVIES_STUFF.HTML, which is coming from our search result-->
+                    {% csrf_token %}
+
+            		<div class="form-group">
+            			<label for="editName">Name</label>
+                        <input type="text" class="form-control" id="editName" placeholder="Enter name" name="name" value="{{ movie.fields.Name }}" required/>
+                    </div>
+
+                    <div class="form-group">
+
+                    	<label for="editURL">Image URL</label>
+                        <input type="text" class="form-control" id="editURL" placeholder="Enter image url" name="url" value={{movie.fields.Pictures.0.url}}/>
+                    </div>
+
+
+
+                    <div class="form-group">
+                    	<label for="editRating">Rating</label>
+                        <input type="number" class="form-control" id="editRating" name="rating" value= {{movie.fields.Rating}} min="0" max="10" required/>
+                    </div>
+
+                    <div class="form-group">
+                    	<label for="editNotes"></label>
+                        <textarea name="notes" id="editNotes" placeholder="Add Notes" value=>{{movie.fields.Notes}}</textarea>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Update</button>
+
+
+            	</form>
+            </div>
+		</div>
+	</div>
+</div>
